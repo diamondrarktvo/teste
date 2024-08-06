@@ -12,6 +12,15 @@ import {
 export default async function assetsEndpoint(req: NextApiRequest, res: NextApiResponse) {
   const { asset: assetName, runtimeVersion, platform } = req.query;
 
+  console.log(
+    "Une application est en train de demander l'asset",
+    assetName,
+    'pour la version',
+    runtimeVersion,
+    'sur la plateforme',
+    platform
+  );
+
   if (!assetName || typeof assetName !== 'string') {
     res.statusCode = 400;
     res.json({ error: 'No asset name provided.' });
@@ -62,8 +71,11 @@ export default async function assetsEndpoint(req: NextApiRequest, res: NextApiRe
     return;
   }
 
+  console.log('assetPath', assetPath);
+
   try {
     const asset = fs.readFileSync(assetPath, null);
+    console.log('asset', asset);
 
     res.statusCode = 200;
     res.setHeader(

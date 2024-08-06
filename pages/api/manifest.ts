@@ -77,6 +77,7 @@ export default async function manifestEndpoint(req: NextApiRequest, res: NextApi
           platform,
           protocolVersion
         );
+        console.log('tonga eto ny farany manifest api');
       } else if (updateType === UpdateType.ROLLBACK) {
         await putRollBackInResponseAsync(req, res, updateBundlePath, protocolVersion);
       }

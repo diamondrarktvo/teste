@@ -1,0 +1,9 @@
+services:
+  utop23i-frontend:
+    container_name: ${DOCKER_CONTAINER_NAME}
+    image: ${DOCKER_IMAGE_NAME} # Specify the name of the image to be built
+    restart: always
+    environment:
+      DOCKER_CONTENT_TRUST: "1"  # Enable Docker Content Trust
+    ports:
+      - "${HOST_PORT}:${CONTAINER_PORT:-3000}"
